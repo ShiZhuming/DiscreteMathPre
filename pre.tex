@@ -108,7 +108,7 @@
         \textbf{证明：} 随机地给\(K_n\)的每条边红蓝着色。
 
         \begin{itemize}
-            \item 对任意k阶完全子图S，S单色这一事件记作\(A_S\)，则\(P(A_S)=2^{1-C_k^2}\)
+            \item 对任意k阶完全子图S，S单色这一事件记作\(A_S\)，则\(P(A_S)=2^{1-C_k^2}\)(两种单色情形，一共\(2^{C_k^2}\)种着色法)
             \item \(P(\cup_S A_S)\leq C_n^k2^{1-C_k^2}\)
             \item \(P(\cap_S \bar{A}_S)\geq 1-C_n^k2^{1-C_k^2} > 0\)
             \item 存在一种红蓝着色后的\(K_n\)，其中存在既非全红也非全蓝的k阶完全子图
@@ -125,12 +125,34 @@
         \textbf{证明：}
 
         \begin{itemize}
-            \item 以p的概率随机选取边生成子图S
+            \item 以p的概率随机选取顶点生成子图S
             \item S的顶点数\(X=\sum_{v\in V} 1_v\Rightarrow E(X)=np\)
             \item S的边数\(Y=\sum_{e\in E} 1_e\Rightarrow E(Y)=p^2|E|=nk\frac{p^2}{2}\)
+            % \item 在S中每条边上都删除一个顶点，剩下的图\(S'\)至少有\(X-Y\)个顶点，且这些点之间没有边相连。\(E(X-Y)=np-nk\frac{p^2}{2}\)，当\(p=\frac{1}{k}\)时取到最大值\(\frac{n}{2k}\)
+            % \item \(\exists S, |S|>\frac{n}{2k}\Rightarrow \alpha(G)>\frac{n}{2k}\)
+        \end{itemize}
+
+        \begin{figure}
+            \centering
+            \includegraphics[scale=.5]{figures/1.png}
+        \end{figure}
+    
+    \end{frame}
+
+    \begin{frame}
+        \frametitle{Turan定理}
+        \begin{itemize}
+            % \item 以p的概率随机选取顶点生成子图S
+            % \item S的顶点数\(X=\sum_{v\in V} 1_v\Rightarrow E(X)=np\)
+            % \item S的边数\(Y=\sum_{e\in E} 1_e\Rightarrow E(Y)=p^2|E|=nk\frac{p^2}{2}\)
             \item 在S中每条边上都删除一个顶点，剩下的图\(S'\)至少有\(X-Y\)个顶点，且这些点之间没有边相连。\(E(X-Y)=np-nk\frac{p^2}{2}\)，当\(p=\frac{1}{k}\)时取到最大值\(\frac{n}{2k}\)
             \item \(\exists S, |S|>\frac{n}{2k}\Rightarrow \alpha(G)>\frac{n}{2k}\)
         \end{itemize}
+
+        \begin{figure}
+            \centering
+            \includegraphics[scale=.5]{figures/2.png}
+        \end{figure}
     
     \end{frame}
 
@@ -254,9 +276,9 @@
         \frametitle{Lovász局部引理证明}
     
         由乘法公式，得
-        $$P(\wedge_{i=1}^{n}\overline{A_i}) = \prod_{i=1}^{n}[1 -  P(A_i|\wedge_{j=i+1}^{n}\overline{A_j})]$$
+        $$P(\wedge_{i=1}^{n}\overline{A_i}) = \prod_{i=1}^{n}P(\overline{A_i}|\wedge_{j=i+1}^{n}\overline{A_j})=\prod_{i=1}^{n}[1 -  P(A_i|\wedge_{j=i+1}^{n}\overline{A_j})]$$
 
-        由主命题，得，$$\prod_{i=1}^{n}[1 -  P(A_i|\wedge_{j=i+1}^{n}\overline{A_j})] \ge (1 - \frac{d}{d+1})^n>0$$
+        由主命题，得，$$\prod_{i=1}^{n}[1 -  P(A_i|\wedge_{j=i+1}^{n}\overline{A_j})] \ge (1 - \frac{1}{d+1})^n>0$$
 
     
     \end{frame}
